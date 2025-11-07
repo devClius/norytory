@@ -1,0 +1,675 @@
+@charset "utf-8";
+
+/* =================================================================
+ * 1. 폰트 정의 (Font Definitions)
+ * ================================================================= */
+
+/* Kakao Big Font Weights */
+@font-face {
+    font-family: 'KakaoBigFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KakaoBigFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KakaoBigFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+}
+
+/* Kakao Small Font Weights */
+@font-face {
+    font-family: 'KakaoSmallFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoSmallSans-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KakaoSmallFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoSmallSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KakaoSmallFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoSmallSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+
+/* =================================================================
+ * 2. 리셋 및 글로벌 스타일 (Reset and Global Styles)
+ * ================================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', sans-serif; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.5;
+    background-color: #000000;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* 햄버거 메뉴 활성화 시 스크롤 고정 */
+html.is-active, 
+body.is-active {
+    overflow-y: hidden; 
+}
+
+/* --- 공통 섹션 및 타이틀 스타일 --- */
+section {
+    padding-top: 320px; /* 기본 데스크탑 패딩 */
+}
+
+.feature-content, .grid-header {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    text-align: center;
+}
+
+.feature-content h3, .grid-header h3 {
+    font-family: KakaoBigFont;
+    font-weight: 700;
+    font-size: clamp(48px, 4.17vw, 80px);
+    color: #ffffff;
+}
+
+.feature-content p, .feature-content p a, .grid-header p {
+    font-family: KakaoBigFont;
+    font-weight: 400;
+    font-size: clamp(18px, 1.56vw, 30px);
+    color: #9B9B9B;
+}
+
+/* 스크롤 애니메이션 */
+.section {
+    position: relative;
+}
+
+.detail-feature > div {
+    opacity: 0; 
+    transform: translateY(40px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+}
+
+.detail-feature > div.fade-in {
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+
+/* =================================================================
+ * 3. 헤더/네비게이션 (Header/Navigation)
+ * ================================================================= */
+
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    padding: 26px 40px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 53px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+/* 데스크탑 네비게이션 */
+.nav-links {
+    display: flex;
+    gap: 60px;
+}
+
+.nav-links a {
+    font-size: 18px;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    color: #ffffff;
+    font-family: KakaoBigFont;
+}
+
+/* 모바일 햄버거 메뉴 토글 버튼 */
+.menu-toggle {
+    display: none; /* 데스크탑에서는 숨김 */
+    flex-direction: column; 
+    justify-content: center; 
+    gap: 8px; 
+    
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    z-index: 1000;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    margin: 0; 
+    transition: transform 0.3s ease; 
+    transform-origin: center;
+}
+
+/* 모바일 네비게이션 메뉴 */
+.nav-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 999;
+    padding-top: 80px;
+    overflow-y: auto;
+    
+    transform: translateY(-100%); /* 위로 숨김 */
+    transition: transform 0.4s ease-out;
+}
+
+.nav-mobile ul {
+    padding-left: 16px;
+}
+
+.nav-mobile li a {
+    font-family: KakaoBigFont;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 64px;
+    color: #ffffff;
+}
+
+/* 햄버거 메뉴 활성화 스타일 */
+.header.is-active .nav-mobile {
+    transform: translateX(0); 
+}
+
+.header.is-active .menu-toggle span:nth-child(1) {
+    transform: translateY(5px) rotate(45deg); 
+}
+
+.header.is-active .menu-toggle span:nth-child(2) {
+    transform: translateY(-5px) rotate(-45deg); 
+}
+
+
+/* =================================================================
+ * 4. 메인 섹션 (Main Section)
+ * ================================================================= */
+
+.main-section {
+    background: url(../images/main.png) no-repeat center; 
+    background-size: cover;
+    text-align: center;
+    height: clamp(480px, 56.25vw, 1080px);
+    padding: 0;
+}
+
+.main-section .container {
+    padding-top: 105px;
+    height: 100%;
+    padding-bottom: clamp(40px, 8.33vw, 160px);
+}
+
+.main-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottom-area {
+    gap: 40px;
+}
+
+
+.highlight-grid {
+    position: relative;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100%;
+}
+
+.highlight-item {
+    padding: 0 clamp(20px, 3.8vw, 55px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.highlight-grid .highlight-item:nth-child(1) svg {
+    width: clamp(95px, 15vw, 306px);    
+    height: auto; 
+}
+
+.highlight-grid .highlight-item:nth-child(2) svg {
+    width: clamp(112px, 18vw, 360px);
+    height: auto; 
+}
+
+.highlight-item h1 {
+    font-size: clamp(26px, 7vw, 140px);
+    line-height: clamp(42px, 10vw, 200px);
+    color: #ffffff;
+    font-weight: 700;
+    font-family: KakaoBigFont;
+}
+
+.highlight-item p {
+    color: #ffffff;
+    font-family: KakaoBigFont;
+    font-weight: 400;
+    line-height: clamp(18px, 3vw, 60px);
+    font-size: clamp(12px, 2vw, 40px);
+}
+
+/* 쇼릴 버튼 */
+.goto-button button {
+    background: #ffffff;
+    border-radius: 80px;
+    border: none;
+    font-family: KakaoBigFont;
+    font-weight: 700;
+    color: #000000;
+    cursor: pointer;
+    width: clamp(240px, 16.15vw, 310px); 
+    height: clamp(56px, 3.75vw, 72px); 
+    font-size: clamp(18px, 1.25vw, 24px);
+}
+
+.goto-button button:hover {
+    border: 1px solid #ffffff;
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+.main-con .goto-button button {
+    width: clamp(138px, 16.15vw, 310px); 
+    height: clamp(32px, 3.75vw, 72px); 
+    font-size: clamp(12px, 1.25vw, 24px);
+}
+
+#metaverse .goto-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+#metaverse .logo-area {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+#metaverse .logo-area svg:first-child {
+    width: clamp(142px, 15vw, 284px);
+}
+
+#metaverse .logo-area svg:nth-child(2) {
+    width: clamp(319px, 40vw, 710px);
+}
+
+/* =================================================================
+ * 5. Feature Detail Sections (Architecture & Car)
+ * ================================================================= */
+
+.feature-content h2 {
+    font-family: KakaoBigFont;
+    font-weight: 700;
+    font-size: clamp(20px, 2vw, 40px);
+    color: #ffffff;
+}
+
+.detail-feature-wrapper {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 40px; 
+}
+
+.detail-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+}
+
+/* 이미지 및 비디오 영역 공통 스타일 */
+.feature-image-area {
+    height: 1036px; 
+    border-radius: 32px; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    position: relative;
+}
+
+.feature-image-area#car-img {
+    cursor: pointer;
+}
+
+.feature-image-area video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+    border-radius: 32px;
+}
+
+/* SVG 아이콘 오버레이 (비디오 재생 버튼 등) */
+.feature-image-area svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+    cursor: pointer; 
+    z-index: 10;
+}
+
+
+/* --- Architecture 슬라이드 CSS (안정성 강화) --- */
+#arch-img { 
+    background: url(../images/metaverse-01.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+#arch-img .project-info {
+    bottom: 24px;
+    left: 30px;
+    font-size: clamp(48px, 4.2vw, 80px);
+    line-height: clamp(40px, 6.25vw, 100px);
+}
+
+.meta-con-group {
+    display: grid;
+    gap: 16px;
+}
+
+/* =================================================================
+ * 6. Works & Business Sections (Grid)
+ * ================================================================= */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    column-gap: 16px;
+    row-gap: 80px;
+}
+
+.project-card {
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+}
+
+.project-image-placeholder {
+    width: 100%;
+    height: 650px; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    border-radius: 32px;
+    position: relative; 
+}
+
+/* 아이콘 오버레이 상태 전환 */
+.project-grid svg {
+    width: 108px;
+    height: 108px; 
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    transition: opacity 0.3s ease; 
+    cursor: pointer;
+    z-index: 10;
+}
+
+.default-icon { opacity: 1; }
+.hover-icon { opacity: 0; }
+
+.project-card:hover .default-icon, .feature-image-area:hover .default-icon { opacity: 0; }
+.project-card:hover .hover-icon, .feature-image-area:hover .hover-icon { opacity: 1; }
+
+.project-info {
+    text-align: left;
+    font-size: clamp(28px, 4vw, 60px);
+    line-height: clamp(32px, 4.6vw, 70px);
+    font-weight: 700;
+    font-family: KakaoBigFont;
+    color: #ffffff;
+    opacity: 0.7;
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+}
+
+/* Metaverse 이미지 URL */
+#meta1 { background-image: url(../images/metaverse-02.png); } 
+#meta2 { background-image: url(../images/metaverse-03.png); }
+
+/* Edu 이미지 URL */
+#edu1 { background-image: url(../images/edu-01.png); } 
+#edu2 { background-image: url(../images/edu-02.png); }
+
+/* Games 이미지 URL */
+#games1 { background-image: url(../images/games-01.png); } 
+#games2 { background-image: url(../images/games-02.png); }
+
+
+
+/* =================================================================
+ * 7. 푸터/컨택트 섹션 (Footer/Contact Section)
+ * ================================================================= */
+ 
+.footer {
+    padding: 320px 0 40px;
+}
+
+.footer * {
+    color: #9B9B9B;
+}
+
+.footer-content {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.footer-l-wrap {
+    display: flex;
+    height: 100%;
+    align-items: end;
+    gap: 40px;
+}
+
+.footer-logo {
+    height: 105px;
+}
+
+.contact-info p {
+    line-height: 32px;
+    font-size: 16px;
+    font-family: KakaoBigFont;
+    font-weight: 700;
+}
+
+.copyright p {
+    font-size: 16px;
+    font-family: KakaoBigFont;
+    font-weight: 700;
+}
+
+#contact .feature-content, .grid-header {
+    gap: 20px;
+}
+
+
+/* =================================================================
+ * 8. 반응형 디자인 (Media Queries)
+ * ================================================================= */
+
+/* --- 1920px 이하 (Large Desktop/Tablet Landscape) --- */
+@media (max-width: 1920px) {
+    /* .main-section { height: 720px; } */
+
+    .bottom-area {
+        gap: 30px;
+    }
+
+    /* Feature Detail: 1열로 전환 */
+    .detail-feature { grid-template-columns: 1fr; }
+    .feature-image-area { height: 675px; }
+
+    .project-image-placeholder { height: 442px; }
+    
+    .project-grid svg {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+/* --- 1280px 이하 (Tablet Portrait/Small Desktop) --- */
+@media (max-width: 1280px) {
+    section { padding-top: 240px; } /* 💡 중복 정의 160px, 100px 중 최종 100px로 통일 */
+
+    .footer { padding: 240px 0 40px; }
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    .footer-l-wrap {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    .footer-logo { height: 66px; }
+    .footer-logo svg {width: 133px; height: 66px; } /* SVG 크기는 폰트 높이로 조절되므로 삭제 */
+
+    .contact-info p {
+        text-align: center;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .copyright p {
+        text-align: center;
+        font-size: 10px;
+    }
+}
+
+
+/* --- 1024px 이하 (Mobile/Tablet Landscape) --- */
+@media (max-width: 1024px) {
+    
+    /* 공통 레이아웃 */
+    section { padding-top: 160px; } /* 💡 중복 정의 160px, 100px 중 최종 100px로 통일 */
+    .detail-feature { gap: 60px; }
+    .detail-feature-wrapper { padding: 0 16px; }
+
+    /* 헤더/네비게이션 */
+    .header { padding: 22px 16px; }
+    .navbar { height: auto; }
+    .logo svg {width: 56px; height: 28px; }
+    /* .logo svg { width: 76px; } */ /* SVG 크기는 폰트 높이로 조절되므로 삭제 */
+
+    .nav-desktop { display: none; }
+    .menu-toggle { display: flex; } /* 햄버거 버튼 활성화 */
+
+    /* 메인 섹션 */
+    /* .main-section { height: 480px; } */
+    .main-section .container { padding-top: 72px;}
+    .bottom-area {
+        gap: 20px;
+    }
+    .highlight-item { width: auto; }
+
+    #metaverse .goto-button {
+        margin-top: 60px;
+    }
+
+    /* Feature Detail */
+    .feature-image-area { height: 560px; }
+    .feature-image-area, .feature-image-area video { border-radius: 16px; }
+    .feature-image-area svg { width: 48px; height: 48px; }
+
+    /* Works Grid (1열) */
+    .project-grid { 
+        grid-template-columns: repeat(1, 1fr); 
+        row-gap: 40px;
+    }
+    .project-image-placeholder { height: 245px; border-radius: 16px; }
+    
+    .project-grid svg {
+        width: 36px;
+        height: 36px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .feature-content, .grid-header {
+        gap: 20px;
+    }
+
+    #metaverse .logo-area {
+        gap: 20px;
+    }
+    .footer { padding: 160px 0 40px; }
+}
