@@ -260,6 +260,10 @@ section {
     align-items: center;
 }
 
+.top-area {
+    gap: 10px;
+}
+
 .bottom-area {
     gap: 40px;
 }
@@ -296,14 +300,14 @@ section {
     font-size: clamp(26px, 7vw, 140px);
     line-height: clamp(42px, 10vw, 200px);
     color: #ffffff;
-    font-weight: 700;
+    font-weight: 800;
     font-family: KakaoBigFont;
 }
 
 .highlight-item p {
     color: #ffffff;
     font-family: KakaoBigFont;
-    font-weight: 400;
+    font-weight: 700;
     line-height: clamp(18px, 4vw, 60px);
     font-size: clamp(12px, 3vw, 40px);
 }
