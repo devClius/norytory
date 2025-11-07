@@ -304,8 +304,8 @@ section {
     color: #ffffff;
     font-family: KakaoBigFont;
     font-weight: 400;
-    line-height: clamp(18px, 3vw, 60px);
-    font-size: clamp(12px, 2vw, 40px);
+    line-height: clamp(18px, 4vw, 60px);
+    font-size: clamp(12px, 3vw, 40px);
 }
 
 /* 쇼릴 버튼 */
