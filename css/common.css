@@ -649,6 +649,20 @@ section {
         margin-top: 60px;
     }
 
+    #metaverse .logo-area {
+        gap: 20px;
+    }
+
+    .project-info {
+        left: 10px;
+        bottom: 16px;
+    }
+
+    #arch-img .project-info {
+        left: 10px;
+        bottom: 16px;
+    }
+
     /* Feature Detail */
     .feature-image-area { height: 560px; }
     .feature-image-area, .feature-image-area video { border-radius: 16px; }
@@ -671,9 +685,6 @@ section {
     .feature-content, .grid-header {
         gap: 20px;
     }
-
-    #metaverse .logo-area {
-        gap: 20px;
-    }
     .footer { padding: 160px 0 40px; }
+    
 }
