@@ -1,4 +1,49 @@
 @charset "utf-8";
+
+/* =================================================================
+ * 1. 폰트 정의 (Font Definitions)
+ * ================================================================= */
+
+/* Kakao Big Font Weights */
+@font-face {
+    font-family: 'KakaoBigFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KakaoBigFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KakaoBigFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+}
+
+/* Kakao Small Font Weights */
+@font-face {
+    font-family: 'KakaoSmallFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoSmallSans-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KakaoSmallFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoSmallSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'KakaoSmallFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoSmallSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
 /* CSS Document */
 #wrap {width:100%; height:100%; overflow-x: hidden;}
 
@@ -23,7 +68,7 @@
 
 .content .en .section {padding-top:128px;}
 .content .con2 {background:url(../images/bg2.png) no-repeat 50% 0 #f98645; height:1047px; width:100%;}
-.content .con3 {background:url(../images/bg3.png) no-repeat 50% 0 #995ce6; height:1605px; width:100%;}
+.content .con3 {background:url(../images/bg3.png) no-repeat 50% 0 #995ce6; height:1360px; width:100%;}
 .content .con4 {background:url(../images/bg4.png) no-repeat 50% 0 #0ec1c8; height:1213px; width:100%;}
 .content .con5 {background:#3a5db7; height:660px; width:100%;}
 .content div.section h3 {text-align:center; font-size:80px; font-weight:800; color:#fff;font-family:'NanumSquareRound';}
@@ -90,14 +135,92 @@ font-family:'NanumSquareRound'; font-size:30px;margin:0 auto;vertical-align: mid
 .img_area {z-index:2}
 
 
-.footer {position:absolute;background:#fff; height:250px; color:#000; font-family:'NanumSquareRound'; font-size:40px;font-weight:700; text-align:center; width:100%;padding-top:77px; line-height:57px; }
-.footer  p { color:#A2A2A2; font-size:28px;font-weight:300;}
+.en.footer {position:absolute;background:#fff; height:250px; color:#000; font-family:'NanumSquareRound'; font-size:40px;font-weight:700; text-align:center; width:100%;padding-top:77px; line-height:57px; }
+.en.footer  p { color:#A2A2A2; font-size:28px;font-weight:300;}
 
-.content .ncon1 {background:url(../images/nn_bg1.png?v=12345) no-repeat 50% 0 #FFF; height:1522px; width:100%;}
+
+
+.footer-wrap {
+    background-color: #000;
+}
+
+.footer {
+    padding: 320px 0 40px;
+}
+
+.footer * {
+    color: #9B9B9B;
+}
+
+.footer-content {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.footer-l-wrap {
+    display: flex;
+    height: 100%;
+    align-items: end;
+    gap: 40px;
+}
+
+.footer-logo {
+    height: 105px;
+}
+
+.contact-info p {
+    line-height: 32px;
+    font-size: 16px;
+    font-family: KakaoBigFont;
+    font-weight: 700;
+}
+
+.copyright p {
+    font-size: 16px;
+    font-family: KakaoBigFont;
+    font-weight: 700;
+}
+
+#contact .feature-content, .grid-header {
+    gap: 20px;
+}
+
+#contact {
+    padding-top: 240px;
+}
+
+.feature-content, .grid-header {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    text-align: center;
+}
+
+.feature-content h3, .grid-header h3 {
+    font-family: KakaoBigFont;
+    font-weight: 700;
+    font-size: 80px;
+    color: #ffffff;
+}
+
+.feature-content p, .feature-content p a, .grid-header p {
+    font-family: KakaoBigFont;
+    font-weight: 400;
+    font-size: 30px;
+    color: #9B9B9B;
+}
+
+
+.content .ncon1 {background:url(../images/nn_bg1.png?v=12345) no-repeat 50% 0 #FFF; height:1379px; width:100%;}
 .content .ncon2-1 {background:url(../images/nn_bg2-1.png?v=12345) no-repeat 50% 0 #6C33B5; height:1033px; width:100%;}
 .content .ncon2-1 div.section {padding-top:942px;}
 
-.content .ncon2-2 {background:url(../images/nn_bg2-2.png?v=12345) no-repeat 50% 0 #6C33B5; height:1435px; width:100%;}
+.content .ncon2-2 {background:url(../images/nn_bg2-2.png?v=12345) no-repeat 50% 0 #6C33B5; height:1205px; width:100%;}
 .content .ncon2-2 div.section {padding-top:1263px;}
 
 .content .ncon2-3 {background:url(../images/nn_bg2-3.png?v=12345) no-repeat 50% 0 #6C33B5; height:1228px; width:100%;}
@@ -105,8 +228,36 @@ font-family:'NanumSquareRound'; font-size:30px;margin:0 auto;vertical-align: mid
 .content .ncon4-1 {background:url(../images/nn_bg4-1.png?v=12345) no-repeat 50% 0 #6C33B5; height:833px; width:100%;}
 .content .ncon4-1 div.section {padding-top:747px;}
 
-.content .ncon4-2 {background:url(../images/nn_bg4-2.png?v=12345) no-repeat 50% 0 #6C33B5; height:1435px; width:100%;}
+.content .ncon4-2 {background:url(../images/nn_bg4-2.png?v=12345) no-repeat 50% 0 #6C33B5; height:1255px; width:100%;}
 .content .ncon4-2 div.section {padding-top:1265px;}
 .content .ncon5 {background:url(../images/nn_bg5.png?v=12345) no-repeat 50% 0 #6C33B5; height:1567px; width:100%;}
 .content .ncon6 {background:url(../images/nn_bg6.png?v=12345) no-repeat 50% 0 #541AA4; height:1001px; width:100%;}
 .content .ncon7 {background:url(../images/nn_bg7.png?v=12345) no-repeat 50% 0 #0DC1C7; height:1035px; width:100%;}
+
+
+/* --- 1280px 이하 (Tablet Portrait/Small Desktop) --- */
+@media (max-width: 1280px) {
+    section { padding-top: 240px; } /* 💡 중복 정의 160px, 100px 중 최종 100px로 통일 */
+
+    .footer { padding: 240px 0 40px;}
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    .footer-l-wrap {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    .footer-logo { height: 66px; }
+    .footer-logo svg {width: 133px; height: 66px; } /* SVG 크기는 폰트 높이로 조절되므로 삭제 */
+
+    .contact-info p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 1024px) {
+    .footer { padding: 160px 0 40px; }
+}
